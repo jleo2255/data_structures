@@ -27,7 +27,7 @@ typedef struct SList_
 	int			size;
 
 	int			(*match)(const void *key1, const void *key2);
-	int			(*destroy)(void *data);
+	void 		(*destroy)(void *data);
 
 	SListElmt	*head;
 	SListElmt	*tail;

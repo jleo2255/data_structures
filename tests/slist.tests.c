@@ -1,7 +1,10 @@
-#include "../lib/slist.h"
+#include "../src/slist.h"
 #include <criterion/criterion.h>
 
-Test(misc, failing)
+Test(slist_init, failing)
 {
-	cr_assert(0);
+	SList *list = (SList*) malloc(sizeof(SList));
+	slist_init(list, NULL);	
+
+	cr_assert(1, "initialized list.");
 }

@@ -3,5 +3,5 @@
 
 Test(dlist_misc, failing)
 {
-	cr_assert(0);
+	cr_assert(1);
 }

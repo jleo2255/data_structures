@@ -61,4 +61,9 @@ int slist_rem_next(SList *list, SListElmt *elmt, void **data);
 
 #define slist_next(elmt) ((elmt)->next)
 
+#define slist_foreach(data, datatype, list)\
+	SListElmt *i_slist_elmt;\
+	datatype (data);\
+	for(i_slist_elmt = (list)->head, (data) = *(datatype*)(i_slist_elmt->data); i_slist_elmt != NULL; i_slist_elmt = i_slist_elmt->next, (data) = *(datatype*)(i_slist_elmt->data))
+
 #endif

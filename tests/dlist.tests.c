@@ -53,6 +53,29 @@ Test(dlist, insert_after_elem, .init = dlist_setup, .fini = dlist_teardown)
 	cr_assert(list->tail->next == NULL, "tail next should be NULL.");
 }
 
+Test(dlist, insert_before_elem, .init = dlist_setup, .fini = dlist_teardown)
+{
+	int *mallocd_int = (int*)malloc(sizeof(int));
+	*mallocd_int = 5;
+	dlist_ins_next(list, NULL, mallocd_int);
+
+	int *mallocd_int_2 = (int*)malloc(sizeof(int));
+	*mallocd_int_2 = 6;
+	dlist_ins_next(list, list->head, mallocd_int_2);
+
+	int *mallocd_int_3 = (int*)malloc(sizeof(int));
+	*mallocd_int_3 = 8;
+	dlist_ins_prev(list, list->tail, mallocd_int_3);
+
+	cr_assert(list->size == 3, "list should have size 2 after insert.");
+	cr_assert(list->head->data == mallocd_int, "head data should be set to malloc\'d int.");
+	cr_assert(list->tail->data == mallocd_int_2, "tail data should be set to malloc\'d int 2.");
+	cr_assert(*(int*)(list->head->data) == 5, "head data should point to correct value.");
+	cr_assert(*(int*)(list->head->next->data) == 8, "head data should point to correct value.");
+	cr_assert(*(int*)(list->tail->data) == 6, "tail data should point to correct value.");
+	cr_assert(list->tail->next == NULL, "tail next should be NULL.");
+}
+
 Test(dlist, remove_after_elem, .init = dlist_setup, .fini = dlist_teardown)
 {
 	int *mallocd_int = (int*)malloc(sizeof(int));

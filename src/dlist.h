@@ -65,4 +65,11 @@ int dlist_remove(DList *list, DListElmt *elmt, void **data);
 			i_dlist_elmt != NULL;\
 			i_dlist_elmt = i_dlist_elmt->next, (data) = *(datatype*)(i_dlist_elmt->data))
 
+#define dlist_foreach_reverse(data, datatype, list)\
+	DListElmt *i_dlist_elmt;\
+	datatype (data);\
+	for(i_dlist_elmt = (list)->tail, (data) = *(datatype*)(i_dlist_elmt->data);\
+			i_dlist_elmt != NULL;\
+			i_dlist_elmt = i_dlist_elmt->prev, (data) = *(datatype*)(i_dlist_elmt->data))
+
 #endif

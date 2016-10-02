@@ -152,3 +152,30 @@ Test(dlist, foreach_iterates_correctly, .init = dlist_setup, .fini = dlist_teard
 		i++;
 	}
 }
+
+Test(dlist, foreach_reverse_iterates_correctly, .init = dlist_setup, .fini = dlist_teardown)
+{
+	int *mallocd_int = (int*)malloc(sizeof(int));
+	*mallocd_int = 5;
+	dlist_ins_next(list, NULL, mallocd_int);
+
+	int *mallocd_int_2 = NULL; 
+
+	// insert 100 items to remove
+	for(int i = 0; i < 100; i++)
+	{
+		mallocd_int_2 = (int*)malloc(sizeof(int));
+		*mallocd_int_2 = i;
+		dlist_ins_next(list, list->tail, mallocd_int_2);
+	}
+
+	cr_assert(list->size == 101, "list should have 101 els");
+
+	int i = 100;
+
+	dlist_foreach_reverse(data, int, list)
+	{
+		cr_assert(data == i == 0 ? 5 : i, "data has corrected value when iterated.");
+		i--;
+	}
+}

@@ -52,8 +52,8 @@ int dlist_ins_next(DList *list, DListElmt *elmt, const void *data)
 	{
 		list->head = new_elmt;
 		list->head->prev = NULL;
-		list->tail->prev = NULL;
 		list->tail = new_elmt;
+		list->tail->prev = NULL;
 	}
 	else
 	{
